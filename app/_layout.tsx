@@ -1,37 +1,57 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import { Colors } from "@/constants/Colors";
+import { Stack } from "expo-router";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+export const unstable_settings = {
+  initialRouteName: "index",
+};
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
+    <>
+      <Stack.Screen />
+      <Stack
+        screenOptions={
+          {
+            // API Reference: https://reactnavigation.org/docs/native-stack-navigator#options
+            
+            headerShadowVisible: false,
+            headerLargeTitle: true,
+            headerStyle: {
+              backgroundColor: Colors.current.background,
+            },
+
+            title: "Varta",
+            headerTitleStyle: {
+              color: Colors.current.text,
+            },
+          }
+        }
+      >
+        <Stack.Screen
+          name="index"
+          options={{
+            // headerShown: false
+            // headerShadowVisible: false,
+            // headerLargeTitle: true,
+
+            // title: "Varta",
+            // headerTitleStyle: {
+            //   color: 'white',
+            // },
+            // headerStyle: {
+            //   backgroundColor: '#131313',
+            // },
+          }}
+        />
+        {/* <Stack.Screen
+          name="second"
+          options={{
+            headerLargeTitle: true,
+            title: "Search",
+          }}
+        /> */}
       </Stack>
-    </ThemeProvider>
+    </>
   );
 }
