@@ -12,8 +12,8 @@ export function timeDistanceFunction(timestampString: string = "2024-10-13 00:36
     const date = new Date(timestampString);
     let timeAgo = formatDistanceToNow(date, { addSuffix: true });
 
-    // Capitalize the first letter of timeAgo
-    timeAgo = timeAgo.charAt(0).toUpperCase() + timeAgo.slice(1);
+    // Remove the word 'about' if it exists
+    timeAgo = timeAgo.replace('about ', '');
 
     return timeAgo;
 }

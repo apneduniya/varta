@@ -1,10 +1,10 @@
-import { NewsDataObject } from '@/utils/types';
+import { NewsListDataObject } from '@/utils/types';
 import axios from 'axios';
 
 
 interface NewsListAPIResponse {
     status: string;
-    data: Array<NewsDataObject>;
+    data: Array<NewsListDataObject>;
 }
 
 export async function getNewsListAPI(preferred_sources: Array<number> = [], user_interests: Array<string> = []): Promise<NewsListAPIResponse> {

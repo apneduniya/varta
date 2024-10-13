@@ -16,5 +16,17 @@ export function newsCardColorFunction(index: number = 0): string {
 }
 
 
+export function randomNewsOutletTextColorFunction(): string {
+    /**
+     * This function returns a random color for the news outlet text.
+     * 
+     * @returns string
+     */
+
+    const colors = ["#54C8B1", "#EBAB15", "#581ECA", "#EF544F"];
+
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+
 
 

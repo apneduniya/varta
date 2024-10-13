@@ -13,7 +13,7 @@ interface NewsBoxProps {
     data: NewsListDataObject;
 }
 
-export default function NewsBox({ data }: NewsBoxProps) {
+export default function BigNewsBox({ data }: NewsBoxProps) {
     const badgeColor = "#373737";
 
     return (
@@ -22,7 +22,6 @@ export default function NewsBox({ data }: NewsBoxProps) {
                 style={{
                     // borderRadius: 16,
                     backgroundColor: 'transparent',
-                    marginBottom: 20,
 
                     // shadowColor: '#000',
                     // shadowOffset: {
@@ -40,15 +39,13 @@ export default function NewsBox({ data }: NewsBoxProps) {
                         width: '100%',
                         paddingVertical: 16,
                         // paddingHorizontal: 16,
-                        flexDirection: "row",
-                        gap: 28,
                     }}>
                     <View>
                         <Image
                             source={{ uri: data?.preview_image }}
                             style={{
-                                width: 100,
-                                height: 100,
+                                width: "100%",
+                                height: 150,
                                 borderRadius: 8,
                             }}
                             contentFit="cover"
@@ -56,7 +53,7 @@ export default function NewsBox({ data }: NewsBoxProps) {
                         />
                     </View>
                     {/* Text Container */}
-                    <View style={{ flex: 1 }}>
+                    <View style={{ flex: 1, marginTop: 16 }}>
                         <View
                             style={{
                                 flexDirection: "row",

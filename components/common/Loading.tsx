@@ -12,7 +12,7 @@ export default function Loading() {
                     alignItems: 'center',
                     backgroundColor: Colors.current.background,
                 }}>
-                    <Text>Loading...</Text>
+                    <Text style={{ color: Colors.current.text, fontFamily: "NeueMachina-UltraBold", fontSize: 18 }}>Loading...</Text>
             </View>
         </>
     );
