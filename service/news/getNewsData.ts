@@ -33,8 +33,8 @@ export async function getNewsDataAPI(url: string, user_summary_choice: string = 
             summary: response.data.summary
         }
     } catch (error) {
-        console.error("Error while fetching news list", error);
-        return { status: 'error', summary: "" };
+        console.log("Error while fetching news list", error);
+        return { status: 'error', summary: "Something went wrong! \nContact the developer: **@thatsmeadarsh**" }
     }
 }
 

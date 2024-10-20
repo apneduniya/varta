@@ -6,6 +6,7 @@ import { textShorterFunction } from "@/utils/textShorter";
 import { timeDistanceFunction } from "@/utils/timeDistance";
 import { randomNewsOutletTextColorFunction } from "@/utils/randomColor";
 import { Image } from "expo-image";
+import { Dimensions } from 'react-native';
 
 
 interface NewsBoxProps {
@@ -14,6 +15,8 @@ interface NewsBoxProps {
 }
 
 export default function BigNewsBox({ data }: NewsBoxProps) {
+    const win = Dimensions.get('window');
+    const ratio = win.width / 600; //600 is actual image width (assumed)
     const badgeColor = "#373737";
 
     return (
@@ -45,7 +48,7 @@ export default function BigNewsBox({ data }: NewsBoxProps) {
                             source={{ uri: data?.preview_image }}
                             style={{
                                 width: "100%",
-                                height: 150,
+                                height: 320 * ratio, //320 is actual height of image (assumed)
                                 borderRadius: 8,
                             }}
                             contentFit="cover"

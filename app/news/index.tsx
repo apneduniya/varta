@@ -1,6 +1,8 @@
+import BookmarkButton from "@/components/button/BookmarkButton";
 import Loading from "@/components/common/Loading";
+import ReadFullArticleButton from "@/components/button/ReadFullArticleButton";
 import { Colors } from "@/constants/Colors";
-import { getNewsDataAPI } from "@/service/getNewsData";
+import { getNewsDataAPI } from "@/service/news/getNewsData";
 import { getItem } from "@/utils/AsyncStorage";
 import { CURRENT_NEWS_DATA } from "@/utils/constants";
 import { randomNewsOutletTextColorFunction } from "@/utils/randomColor";
@@ -49,7 +51,7 @@ export default function News() {
             setLoading(false);
         }
 
-        getNewsSummary()
+        getNewsSummary();
 
     }, [newsData])
 
@@ -80,7 +82,11 @@ export default function News() {
                                 {` • ${timeDistanceFunction(newsData?.publish_date) || "Unknown Date"}`}
                             </Text>
                         </View>
-                        <View style={{ marginTop: 24 }}>
+                        <View style={{ marginTop: 16, flexDirection: "row", gap: 16 }} >
+                            {newsData && <BookmarkButton newsData={newsData} />}
+                            {newsData?.link && <ReadFullArticleButton link={newsData.link} />}
+                        </View>
+                        <View style={{ marginTop: 8 }}>
                             <Image
                                 source={{ uri: newsData?.preview_image }}
                                 style={{
@@ -93,7 +99,7 @@ export default function News() {
                         </View>
                         <Markdown style={{
                             body: {
-                                fontSize: 16, color: Colors.current.text, marginTop: 28, fontFamily: "EulidCircular-Regular", backgroundColor: Colors.current.background
+                                fontSize: 16, color: Colors.current.text, marginTop: 16, fontFamily: "EulidCircular-Regular", backgroundColor: Colors.current.background
                             },
                             code_inline: {
                                 backgroundColor: "#24292E",
@@ -107,7 +113,7 @@ export default function News() {
                         }}>
                             {summary}
                         </Markdown>
-                        <View
+                        {/* <View
                             style={{
                                 width: "80%",
                                 height: 1,
@@ -115,8 +121,8 @@ export default function News() {
                                 marginVertical: 32,
                                 alignSelf: "center"
                             }}
-                        ></View>
-                        <View style={{ marginBottom: 32 }}>
+                        ></View> */}
+                        {/* <View style={{ marginBottom: 32 }}>
                             {newsData?.link && (
                                 <>
                                     <Text style={{ color: Colors.current.text, fontFamily: "EulidCircular-Regular" }}>
@@ -129,7 +135,7 @@ export default function News() {
                                     </Pressable>
                                 </>
                             )}
-                        </View>
+                        </View> */}
                     </ScrollView>
                 )
             }

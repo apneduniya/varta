@@ -23,7 +23,7 @@ export function randomNewsOutletTextColorFunction(): string {
      * @returns string
      */
 
-    const colors = ["#54C8B1", "#EBAB15", "#581ECA", "#EF544F"];
+    const colors = ["#54C8B1", "#EBAB15", "#9B8AE6", "#EF544F"];
 
     return colors[Math.floor(Math.random() * colors.length)];
 }

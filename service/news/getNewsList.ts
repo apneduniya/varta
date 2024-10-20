@@ -33,7 +33,7 @@ export async function getNewsListAPI(preferred_sources: Array<number> = [], user
             data: response.data.data
         }
     } catch (error) {
-        console.error("Error while fetching news list", error);
+        console.log("Error while fetching news list", error);
         return { status: 'error', data: [] };
     }
 }

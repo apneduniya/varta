@@ -9,13 +9,22 @@ export function timeDistanceFunction(timestampString: string = "2024-10-13 00:36
      * @returns {string} - The time distance from now.
      */
 
-    const date = new Date(timestampString);
-    let timeAgo = formatDistanceToNow(date, { addSuffix: true });
+    try {
+        if (timestampString.includes('ago')) {
+            return timestampString;
+        }
 
-    // Remove the word 'about' if it exists
-    timeAgo = timeAgo.replace('about ', '');
+        const date = new Date(timestampString);
+        let timeAgo = formatDistanceToNow(date, { addSuffix: true });
 
-    return timeAgo;
+        // Remove the word 'about' if it exists
+        timeAgo = timeAgo.replace('about ', '');
+
+        return timeAgo;
+    } catch (error) {
+        console.log("Error in timeDistanceFunction", error);
+        return "Unknown";
+    }
 }
 
 

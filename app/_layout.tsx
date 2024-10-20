@@ -31,7 +31,7 @@ export default function RootLayout() {
 
     return (
         <>
-            <Stack.Screen />
+            {/* <Stack.Screen />
             <Stack
                 screenOptions={
                     {
@@ -62,7 +62,65 @@ export default function RootLayout() {
                         title: "",
                     }}
                 />
-            </Stack>
+            </Stack> */}
+            <Stack
+                screenOptions={
+                    {
+                        // API Reference: https://reactnavigation.org/docs/native-stack-navigator#options
+
+                        headerShadowVisible: false,
+                        headerLargeTitle: true,
+                        headerStyle: {
+                            backgroundColor: Colors.current.background,
+                        },
+                        headerTintColor: Colors.current.text,
+                    }
+                }
+            >
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+                <Stack.Screen
+                    name="news/index"
+                    options={{
+                        title: "",
+                    }}
+                />
+                <Stack.Screen
+                    name="interest/index"
+                    options={{
+                        title: ""
+                    }}
+                />
+                <Stack.Screen
+                    name="news-outlet/index"
+                    options={{
+                        title: ""
+                    }}
+                />
+                <Stack.Screen
+                    name="email-subscription/index"
+                    options={{
+                        title: ""
+                    }}
+                />
+                <Stack.Screen
+                    name="language/index"
+                    options={{
+                        title: ""
+                    }}
+                />
+                <Stack.Screen
+                    name="login/index"
+                    options={{
+                        title: ""
+                    }}
+                />
+                <Stack.Screen
+                    name="register/index"
+                    options={{
+                        title: ""
+                    }}
+                />
+            </Stack >
         </>
     );
 }
