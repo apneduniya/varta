@@ -7,6 +7,7 @@
 - [Features](#-features)
 - [Prerequisites](#-prerequisites)
 - [Steps to Run](#-steps-to-run)
+- [Deploy on Spheron](#-deploy-on-spheron)
 - [Project structure](#%EF%B8%8F-project-structure)
 - [Contributing](#-contributing)
 - [Acknowledgments](#-acknowledgments)
@@ -109,6 +110,9 @@ This project uses [file-based routing](https://docs.expo.dev/router/introduction
 
 > [!NOTE]
 > Ollama should be running locally before you start the server!
+
+## 🚀 Deploy on Spheron
+<p align="center">Comming Soon!</p>
 
 ## 🏛️ Project structure
 
