@@ -1,0 +1,92 @@
+# Welcome to the Spheron Network! 🚀☁
+# This file is called a Infrastructure Composition Language (ICL)
+# ICL is a human friendly data standard for declaring deployment attributes.
+# The ICL file is a "form" to request resources from the Network.
+# ICL is compatible with the YAML standard and similar to Docker Compose files.
+
+---
+version: "1.0"
+services:
+  server:
+    image: thatsmeadarsh/varta-server:latest
+    pull_policy: Always
+    expose:
+      - port: 8000
+        as: 80
+        to:
+          - global: true
+    env:
+      - MONGO_CONNECTION_URL=
+      - DATABASE_NAME=
+      - JWT_SECRET_KEY=
+      - JWT_REFRESH_SECRET_KEY=
+      - ACCESS_TOKEN_EXPIRE_MINUTES=
+      - REFRESH_TOKEN_EXPIRE_MINUTES=
+      - ALGORITHM=
+      - SMTP_SERVER=
+      - SMTP_PORT=
+      - SMTP_USERNAME=
+      - SMTP_PASSWORD=
+  ollama:
+    image: ollama/ollama:latest
+    expose:
+      - port: 11434
+        as: 11434
+        to:
+        - global: false
+        - service: server
+    env:
+        - OLLAMA_MODEL=llama3
+    command:
+        - "sh"
+        - "-c"
+        - "apt update && apt install -y curl && /bin/ollama serve & while ! curl -s http://localhost:11434/api/tags > /dev/null; do sleep 1; done && /bin/ollama pull $OLLAMA_MODEL && /bin/ollama run $OLLAMA_MODEL 'Hello' && tail -f /dev/null"
+profiles:
+  name: varta
+  mode: provider
+  duration: 1h
+  tier:
+    - community
+  compute:
+    server:
+      resources:
+        cpu:
+          units: 4
+        memory:
+          size: 8Gi
+        storage:
+          - size: 10Gi
+    ollama:
+      resources:
+        cpu:
+          units: 8
+        memory:
+          size: 16Gi
+        storage:
+          - size: 200Gi
+        gpu:
+          units: 1
+          attributes:
+            vendor:
+              nvidia:
+                - model: rtx4090
+  placement:
+    westcoast:
+      attributes:
+        region: us-central
+      pricing:
+        server:
+          token: USDT
+          amount: 0.5
+        ollama:
+          token: USDT
+          amount: 1
+deployment:
+  server:
+    westcoast:
+      profile: server
+      count: 1
+  ollama:
+    westcoast:
+      profile: ollama
+      count: 1

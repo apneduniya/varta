@@ -1,0 +1,1 @@
+from service.news.main import get_news_list, get_news_data

@@ -1,0 +1,1 @@
+from app.news.main import router
