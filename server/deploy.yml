@@ -33,10 +33,10 @@ services:
       - port: 11434
         as: 11434
         to:
-        - global: false
         - service: server
     env:
         - OLLAMA_MODEL=llama3
+        - OLLAMA_HOST=http://localhost:11434
     command:
         - "sh"
         - "-c"
