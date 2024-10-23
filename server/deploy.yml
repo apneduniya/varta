@@ -27,16 +27,19 @@ services:
       - SMTP_PORT=
       - SMTP_USERNAME=
       - SMTP_PASSWORD=
+      - OLLAMA_PROTOCOL=http
+      - OLLAMA_HOST=ollama
+      - OLLAMA_PORT=11434
   ollama:
     image: ollama/ollama:latest
     expose:
       - port: 11434
         as: 11434
         to:
-        - service: server
+          - global: false
+          - service: server
     env:
         - OLLAMA_MODEL=llama3
-        - OLLAMA_HOST=http://localhost:11434
     command:
         - "sh"
         - "-c"
