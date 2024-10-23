@@ -118,7 +118,6 @@ Here I will help you to deploy **Server and Ollama** on Spheron using **Spheron 
 You should have this before you start deploying on Spheron:
 
 - [curl](https://curl.se/)
-- 
 
 ### 1. Install Spheron Protocol CLI (Linux, MacOS)
 ```bash
@@ -211,6 +210,7 @@ Deployment manifest sent, waiting for acknowledgment.
 Deployment is finished.
 ```
 Note: The `lid` we get from the deployment is called **Lease ID**. This is the identifier you need to use to access your deployment's logs and status.
+
 Now, Congratulations!! You have deployed the **Server and Ollama** on Spheron successfully 🥳🥳.
 
 ### 6. Access Your Deployment
