@@ -163,7 +163,7 @@ Deposit USDT to your escrow wallet for deployment:
 ```bash
 sphnctl payment deposit --amount 20 --token USDT
 ```
-Now check your balance is unlocked and sufficient:
+Now check your balance, if it's unlocked and sufficient (just like mine above):
 ```bash
 sphnctl wallet balance --token USDT
 ```
