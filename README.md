@@ -112,7 +112,113 @@ This project uses [file-based routing](https://docs.expo.dev/router/introduction
 > Ollama should be running locally before you start the server!
 
 ## 🚀 Deploy on Spheron
-<p align="center">Comming Soon!</p>
+Here I will help you to deploy **Server and Ollama** on Spheron using **Spheron Protocol CLI** 💪
+
+### Prerequisites
+You should have this before you start deploying on Spheron:
+
+- [curl](https://curl.se/)
+- 
+
+### 1. Install Spheron Protocol CLI (Linux, MacOS)
+```bash
+curl -sL1 https://sphnctl.sh | bash
+```
+After installation, verify the installation by using a simple command to check the Spheron version:
+```bash
+sphnctl version # or `sphnctl -h` for help
+```
+
+### 2. Creating a Wallet
+```bash
+sphnctl wallet create --name <your-wallet-name>
+```
+Replace `<your-wallet-name>` with your desired wallet name. Here is an example of how the result will look:
+```bash
+Created account xxx:
+ path: /home/thatsmeadarsh/.spheron/<your-wallet-name>.json
+ address: 0x3683Ae6bd8f23DEb35f79A750EA0a7e6fc858047
+ secret: xxxxxxxxxx
+ mnemonic: xxxxxx xxxxx xxxx xxxxx xxxxx xxxx xxxxx xxxxx
+```
+Make sure to _securely save the mnemonic phrase and key secret provided_.
+
+### 3. Get Test Tokens from the Faucet
+You will need some token to deploy on Spheron. Visit the [Spheron Faucet](https://faucet.spheron.network/) to obtain test tokens for deployment. After receiving the tokens, you can check your wallet balance with:
+```bash
+sphnctl wallet balance --token USDT
+```
+Here is an example of how the result will look:
+```bash
+Current ETH balance: 0.09993387282 
+Total USDT balance: 35 
+ 
+Deposited USDT balance
+ unlocked: 14.030481 
+ locked: 4e-06 
+```
+Note: You might have `unlocked or locked USDT balance` as 0 but here I don't because I have previously deployed on Spheron. Don't worry, in next step I have covered that 😋.
+
+### 4. Deposit Tokens to Your Escrow Balance
+Deposit USDT to your escrow wallet for deployment:
+```bash
+sphnctl payment deposit --amount 20 --token USDT
+```
+Now check your balance is unlocked and sufficient:
+```bash
+sphnctl wallet balance --token USDT
+```
+
+### 5. Create your Deployment
+I have already created a docker image for you so you can directly head towards to deployment without worrying 😉. 
+In the project directory, navigate to `server/`:
+```bash
+cd server
+```
+Open `deploy.yml` in a code editor and fill the environmental variables:
+```bash
+- MONGO_CONNECTION_URL=
+- DATABASE_NAME=
+- JWT_SECRET_KEY=
+- JWT_REFRESH_SECRET_KEY=
+- ACCESS_TOKEN_EXPIRE_MINUTES=
+- REFRESH_TOKEN_EXPIRE_MINUTES=
+- ALGORITHM=
+- SMTP_SERVER=
+- SMTP_PORT=
+- SMTP_USERNAME=
+- SMTP_PASSWORD=
+```
+And deploy the `deploy.yml` configuration file on Spheron:
+```bash
+sphnctl deployment create deploy.yml
+```
+Here is an example of how the result will look:
+```bash
+Validating SDL configuration.
+SDL validated.
+Sending configuration for provider matching.
+Create deployment tx: [Tx Hash]
+Waiting for providers to bid on the deployment order...
+Bid found.
+Order matched successfully.
+Deployment created using wallet 0x3683Ae6bd8f23DEb35f79A750EA0a7e6fc858047
+ lid: 389
+ provider: 0x6634d41cccBD1E1576Ed4c6226832521A66bF874
+ agreed price: 0.74
+Sending the manifest for deployment…
+Deployment manifest sent, waiting for acknowledgment.
+Deployment is finished.
+```
+Note: The `lid` we get from the deployment is called **Lease ID**. This is the identifier you need to use to access your deployment's logs and status.
+Now, Congratulations!! You have deployed the **Server and Ollama** on Spheron successfully 🥳🥳.
+
+### 6. Access Your Deployment
+To get details about your deployment, including the URL, ports, and status, run:
+```bash
+sphnctl deployment get --lid <lease-id>
+```
+Replace the `<lease-id>` with your actual Lease ID, you obtained after deployment.
 
 ## 🏛️ Project structure
 
