@@ -115,6 +115,7 @@ This project uses [file-based routing](https://docs.expo.dev/router/introduction
 
 ## 🚀 Deploy on Spheron
 Here I will help you to deploy **Server and Ollama** on Spheron using **Spheron Protocol CLI** 💪
+
 [![demo video](https://img.youtube.com/vi/j0LiRiz2iXg/0.jpg)](https://youtu.be/j0LiRiz2iXg)
 
 ### Prerequisites
